@@ -12,4 +12,4 @@ while True:
     changeLabel(infoLabel,"Key Code: " + str(key))
     if key==27:
         break
-endWait()
+pause(1000, False)

@@ -1,11 +1,5 @@
 # wghs (Wakefield Graphics Helper Scripts)
-# version 17  30/1/2015
-# New:
-# rotateSprite
-# Fixes:
-# PlaySoundandWait no longer causes blanking of sprites
-# screensize now accepts initial position of zero x or y
-# changeSpriteImage now updates display properly
+
 
 # Report bugs to spaget@wghsss.org.uk
 
@@ -251,14 +245,14 @@ def touching(sprite1, sprite2):
     collided = pygame.sprite.collide_mask(sprite1,sprite2)
     return collided
 
-def pause(milliseconds):
+def pause(milliseconds, allowEsc = True):
         keys = pygame.key.get_pressed()
         current_time = pygame.time.get_ticks()
         waittime=current_time + milliseconds
-        while not (current_time>waittime or keys[pygame.K_ESCAPE]):
+        while not (current_time>waittime or (keys[pygame.K_ESCAPE] and allowEsc)):
                 pygame.event.clear()
                 keys = pygame.key.get_pressed()
-                if (keys[pygame.K_ESCAPE]):
+                if (keys[pygame.K_ESCAPE] and allowEsc):
                     pygame.quit()
                     sys.exit()
                 current_time = pygame.time.get_ticks()
